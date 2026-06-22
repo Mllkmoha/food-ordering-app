@@ -14,7 +14,7 @@ export default function MealItem({ id, name, price, description, image }) {
   return (
     <li className="meal-item">
       <article>
-        <img src={`http://localhost:3000/${image}`} alt={name} />
+        <img src={`https://food-ordering-app-1-hh7u.onrender.com/${image}`} alt={name} />
         <div>
           <h3>{name}</h3>
           <p className="meal-item-price">{currencyFormatter.format(price)}</p>
