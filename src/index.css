@@ -1,0 +1,614 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-base: #0d0d14;
+  --bg-card: #141420;
+  --bg-surface: rgba(255, 255, 255, 0.06);
+  --accent: #ff6b35;
+  --accent-2: #f7c94b;
+  --text-primary: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.45);
+  --border: rgba(255, 255, 255, 0.08);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Header ── */
+#main-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: rgba(13, 13, 20, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid var(--border);
+}
+
+#main-header #title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#main-header #title img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1.5px solid var(--accent);
+}
+
+#main-header button {
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  background: var(--bg-surface);
+  border: 0.5px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#main-header button:hover {
+  background: rgba(255, 107, 53, 0.15);
+  border-color: rgba(255, 107, 53, 0.4);
+  color: var(--accent);
+}
+
+h1 {
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  text-transform: none;
+}
+
+/* ── Meals Grid ── */
+#meals {
+  width: 100%;
+  max-width: 900px;
+  list-style: none;
+  margin: 1.5rem auto;
+  padding: 0 16px 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.meal-item {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 0.5px solid var(--border);
+  transition: transform 0.2s, border-color 0.2s;
+  animation: slide-up 0.3s ease both;
+}
+
+.meal-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 107, 53, 0.3);
+}
+
+.meal-item:active {
+  transform: scale(0.97);
+}
+
+.meal-item article {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.meal-item img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.meal-item h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 10px 12px 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meal-item-description {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding: 0 12px;
+  margin: 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meal-item-price {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: transparent;
+  padding: 6px 12px 0;
+  margin: 0;
+}
+
+.meal-item-actions {
+  padding: 10px 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ── Buttons ── */
+.button {
+  font: inherit;
+  cursor: pointer;
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.button:hover {
+  opacity: 0.88;
+}
+
+.button:active {
+  transform: scale(0.96);
+  opacity: 0.8;
+}
+
+.button-danger {
+  font: inherit;
+  cursor: pointer;
+  background: rgba(255, 60, 60, 0.15);
+  border: 0.5px solid rgba(255, 60, 60, 0.3);
+  color: #ff6b6b;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.button-danger:hover {
+  background: rgba(255, 60, 60, 0.25);
+  border-color: rgba(255, 60, 60, 0.5);
+}
+
+.text-button {
+  font: inherit;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 9px 16px;
+  transition: color 0.2s;
+}
+
+.text-button:hover,
+.text-button:active {
+  color: #ffffff;
+}
+
+/* ── Modal ── */
+.modal {
+  margin: auto;
+  background: #1a1a2e;
+  border-radius: 20px;
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.9);
+  padding: 2rem;
+  width: 92%;
+  max-width: 500px;
+  color: #ffffff;
+  animation: slide-up 0.25s ease forwards;
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.modal h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: #ffffff;
+  padding-bottom: 0.8rem;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 768px) {
+  .modal-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .modal-actions .text-button {
+    text-align: center;
+    order: 3;
+    padding: 12px;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+
+  .modal-actions > div {
+    display: flex;
+    gap: 8px;
+    order: 1;
+  }
+
+  .modal-actions > div .button,
+  .modal-actions > div .button-danger {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .modal-actions > div {
+    flex-direction: column;
+    display: flex;
+    gap: 8px;
+  }
+
+  .modal-actions > div .button,
+  .modal-actions > div .button-danger {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .modal-actions .text-button {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    text-align: center;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    order: 3;
+  }
+}
+
+/* ── Cart ── */
+.cart h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 1.2rem;
+  color: var(--text-primary);
+  padding-bottom: 0.8rem;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.cart ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.2rem 0 0;
+  padding-top: 1rem;
+  border-top: 0.5px solid var(--border);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.cart-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.cart-item-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.cart-item-actions button {
+  cursor: pointer;
+  font-size: 1rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 0.5px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--accent);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.15s;
+}
+
+.cart-item-actions button:hover {
+  background: rgba(255, 107, 53, 0.2);
+  border-color: rgba(255, 107, 53, 0.4);
+}
+
+/* ── Form Controls ── */
+.control {
+  margin: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.control label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.control input {
+  width: 100%;
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  border: 0.5px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  transition: border-color 0.2s;
+}
+
+.control input::placeholder {
+  color: var(--text-muted);
+}
+
+.control input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 107, 53, 0.05);
+}
+
+.control-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.control-row .control {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* ── Error ── */
+.error {
+  width: 90%;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 60, 60, 0.1);
+  color: #ff6b6b;
+  border: 0.5px solid rgba(255, 60, 60, 0.25);
+  border-radius: var(--radius-md);
+}
+
+.error h2 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.error p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* ── Utility ── */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* ── Animations ── */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  #main-header {
+    padding: 12px 14px;
+  }
+
+  h1 {
+    font-size: 1.1rem;
+  }
+
+  #meals {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 0 12px 90px;
+    margin: 1rem auto;
+  }
+
+  .meal-item img {
+    height: 110px;
+  }
+
+  .meal-item h3 {
+    font-size: 0.85rem;
+    padding: 8px 10px 2px;
+  }
+
+  .meal-item-price {
+    font-size: 0.9rem;
+    padding: 4px 10px 0;
+  }
+
+  .meal-item-actions {
+    padding: 8px 10px 12px;
+  }
+
+  .button {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+
+  .modal {
+    width: 96%;
+    max-width: 100%;
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    margin: auto 8px;
+  }
+
+  .modal h2 {
+    font-size: 1.1rem;
+  }
+
+  .modal-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .modal-actions .button,
+  .modal-actions .button-danger {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .modal-actions .text-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .control-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cart-item {
+    padding: 10px 0;
+  }
+
+  .cart-item p {
+    font-size: 0.82rem;
+  }
+
+  .cart-item-actions button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cart-total {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  #meals {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 0 10px 90px;
+  }
+
+  .meal-item img {
+    height: 90px;
+  }
+
+  h1 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 900px) {
+  #meals {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  #meals {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.modal-actions {
+  justify-content: space-between; 
+}
