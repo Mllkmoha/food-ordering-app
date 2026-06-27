@@ -72,8 +72,3 @@ npm start
 
 [Mllkmoha](https://github.com/Mllkmoha)
 
-## License
-
-This project is for learning and portfolio use
-
-Project update
